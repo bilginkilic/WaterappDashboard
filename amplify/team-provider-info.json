@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-waterapp-staging-82858-authRole",
+      "UnauthRoleArn": "arn:aws:iam::681707704796:role/amplify-waterapp-staging-82858-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::681707704796:role/amplify-waterapp-staging-82858-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-waterapp-staging-82858-deployment",
+      "UnauthRoleName": "amplify-waterapp-staging-82858-unauthRole",
+      "StackName": "amplify-waterapp-staging-82858",
+      "StackId": "arn:aws:cloudformation:eu-west-2:681707704796:stack/amplify-waterapp-staging-82858/ccd81aa0-a853-11ed-a905-0a8dfb4270be",
+      "AmplifyAppId": "d63m76vhmak1o"
+    }
+  }
+}
