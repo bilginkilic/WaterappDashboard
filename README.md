@@ -83,3 +83,5 @@ For more information about the MIT License, visit [https://opensource.org/licens
 ---
 
 With this improved README, it provides a brief overview of the project, explains how to run the application locally, and includes references to the official Create React App documentation for further learning and troubleshooting. Additionally, it mentions the license information for the project, making it clear for users what they can do with the code.
+
+thanks
