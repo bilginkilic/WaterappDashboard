@@ -20,27 +20,37 @@ const CategoryWinners = () => {
   };
 
   const findMostSavedWaterWinner = () => {
-    const sortedUsers = users.slice().sort((a, b) => b.savedvalue - a.savedvalue);
-    return sortedUsers[0];
+    const sortedUsers = users.slice().sort((a, b) =>b.currerntsavedvalue -a.currerntsavedvalue  );
+    return sortedUsers;
   };
+
+  const getTopThreeItems = (items) => {
+    if (!Array.isArray(items)) {
+      return ""; // Return an empty string for non-array inputs
+    }
+  
+    const topThreeItems = items.map(user=>user.username).slice(0, 3); // Extract the first three items or less
+    return topThreeItems.join(", "); // Join them with commas
+  };
+  
 
   const findMostVisitorsWinner = () => {
     const sortedUsers = users.slice().sort((a, b) => b.visitcount - a.visitcount);
-    return sortedUsers[0];
+    return sortedUsers;
   };
 
   const findMostDecreasedValueWinner = () => {
     const sortedUsers = users.slice().sort((a, b) => (b.totalvalue - b.currentotalvalue) - (a.totalvalue - a.currentotalvalue));
-    return sortedUsers[0];
+    return sortedUsers;
   };
 
   const refreshData = () => {
     fetchUsers();
   };
 
-  const mostSavedWaterWinner = findMostSavedWaterWinner();
-  const mostVisitorsWinner = findMostVisitorsWinner();
-  const mostDecreasedValueWinner = findMostDecreasedValueWinner();
+  const mostSavedWaterWinner = getTopThreeItems(findMostSavedWaterWinner());
+  const mostVisitorsWinner = getTopThreeItems(findMostVisitorsWinner());
+  const mostDecreasedValueWinner =  getTopThreeItems(findMostDecreasedValueWinner());
 
   return (
     <div>
@@ -50,13 +60,13 @@ const CategoryWinners = () => {
         Refresh
       </Button>
       <Alert variant="success" className="mt-3">
-        Most Saved Water Winner: {mostSavedWaterWinner?.username} - {mostSavedWaterWinner?.savedvalue} liters
+        Most Saved Water Winner: {mostSavedWaterWinner}   
       </Alert>
       <Alert variant="info" className="mt-3">
-        Most Visitors Winner: {mostVisitorsWinner?.username} - {mostVisitorsWinner?.visitcount} visits
+        Most Visitors Winner:  {mostVisitorsWinner}  
       </Alert>
       <Alert variant="warning" className="mt-3">
-        Most Decreased Value Winner: {mostDecreasedValueWinner?.username} - {mostDecreasedValueWinner ? (mostDecreasedValueWinner.totalvalue - mostDecreasedValueWinner.currentotalvalue) : 0} liters
+        Most Decreased Value Winner: {mostDecreasedValueWinner}  
       </Alert>
     </div>
   );
