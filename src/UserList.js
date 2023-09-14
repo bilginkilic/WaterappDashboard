@@ -111,6 +111,7 @@ const UserList = () => {
             <th onClick={() => handleSort('startdate')}>Start Date ▼</th>
             <th onClick={() => handleSort('visitcount')}>Visit Count ▼</th>
             <th onClick={() => handleSort('lastupdatetime')}>Last Update Time ▼</th>
+            <th>Water Save Increase Rate</th>
           </tr>
         </thead>
         <tbody>
@@ -119,11 +120,12 @@ const UserList = () => {
               <td>{user?.username}</td>
               {/* <td>{user?.savedvalue}</td> */}
               <td>{user?.totalvalue}</td>
-              <td>{user.currerntsavedvalue}</td>
-              <td>{user.currentotalvalue}</td>
+              <td>{user?.currerntsavedvalue}</td>
+              <td>{user?.currentotalvalue}</td>
               <td>{formatReadableDate(user?.startdate)}</td>
               <td>{user?.visitcount}</td>
               <td>{formatReadableDate(user?.lastupdatetime)}</td>
+              <td>{((user?.currerntsavedvalue-user?.savedvalue)/user?.savedvalue * 100).toFixed(2)}%</td>
             </tr>
           ))}
         </tbody>
