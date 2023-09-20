@@ -34,38 +34,7 @@ const UserList = () => {
   };
 
 
-  const handleExcel = () => {
-    // Create a new workbook
-    const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('Sheet 1');
-    const sortedUsers = [...users]?.sort((a, b) => {
-      const aValue = a[sortBy];
-      const bValue = b[sortBy];
-      return sortOrder === 'asc' ? aValue?.toString().localeCompare(bValue?.toString()) : bValue?.toString().localeCompare(aValue?.toString());
-    });
 
-    worksheet.addRow(['username', 'savedvalue', 'totalvalue', 'startdate', 'visitcount', 'lastupdatetime']);
-
-    sortedUsers.map((user) => (
-      worksheet.addRow([user.username, user.savedvalue, user.totalvalue, formatReadableDate(user.startdate), user.visitcount, formatReadableDate(user.lastupdatetime)])
-
-    ))
-
-
-
-
-    // Generate a blob from the workbook
-    workbook.xlsx.writeBuffer().then((data) => {
-      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'data.xlsx';
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-
-  }
   const handleRefresh = () => {
     fetchUsers();
 
@@ -91,7 +60,38 @@ const UserList = () => {
     return sortOrder === 'asc' ? aValue?.toString().localeCompare(bValue?.toString()) : bValue?.toString().localeCompare(aValue?.toString());
   });
 
+  const handleExcel = () => {
+    // Create a new workbook
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Sheet 1');
+    const sortedUsers = [...users]?.sort((a, b) => {
+      const aValue = a[sortBy];
+      const bValue = b[sortBy];
+      return sortOrder === 'asc' ? aValue?.toString().localeCompare(bValue?.toString()) : bValue?.toString().localeCompare(aValue?.toString());
+    });
 
+    worksheet.addRow(['username', 'totalvalue','currerntsavedvalue','currentotalvalue', 'startdate', 'visitcount', 'lastupdatetime','watersaveincreaserate']);
+
+    sortedUsers.map((user) => (
+      worksheet.addRow([user.username, user.totalvalue, user.currerntsavedvalue, user.currentotalvalue, formatReadableDate(user.startdate), user.visitcount, formatReadableDate(user.lastupdatetime),((user?.currerntsavedvalue-user?.savedvalue)/user?.savedvalue * 100).toFixed(2)])
+
+    ))
+
+
+
+
+    // Generate a blob from the workbook
+    workbook.xlsx.writeBuffer().then((data) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'data.xlsx';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+  }
   const filteredUsers = sortedUsers.filter(user => user.username && user.username.trim() !== '');
 
   return (
