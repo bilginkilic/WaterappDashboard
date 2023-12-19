@@ -26,7 +26,9 @@ const UserList = () => {
 
   const fetchUsers = async () => {
     try {
+      console.log("fetch user called")
       const usersData = await DataStore.query(Statisticx);
+      console.log(usersData)
       setUsers(usersData);
     } catch (error) {
       console.error('Error fetching users:', error);
