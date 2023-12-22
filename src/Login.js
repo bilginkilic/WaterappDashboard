@@ -7,7 +7,7 @@ const Login = ({ onLogin }) => {
   const [error, setError] = useState('');
 
   const handleLogin =async () => {
-    if (username === 'seda' || username === 'berna' || username === 'bilgin' || username =="sedaer") {
+    if (username === 'seda' || username === 'berna' || username === 'bilgin' || username ==="sedaer") {
         const user = await Auth.signIn(username, password);
     if(user){
         onLogin(true);
