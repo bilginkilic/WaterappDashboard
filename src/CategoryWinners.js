@@ -74,7 +74,7 @@ const CategoryWinners = () => {
         Most Decreased Value Winner: {mostDecreasedValueWinner}  
       </Alert>
       <Alert variant="warning" className="mt-3">
-       The best starters(Who starts the challenge with the lowest water foot print): {leastWaterFootPrint}  
+       The best starters(Who starts the challenge with the lowest water footprint): {leastWaterFootPrint}  
       </Alert>
     </div>
   );
