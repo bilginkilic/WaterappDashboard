@@ -40,7 +40,7 @@ const CategoryWinners = () => {
   };
 
   const findMostDecreasedValueWinner = () => {
-    const sortedUsers = users.slice().sort((a, b) => (a.currentotalvalue  - a.totalvalue) -(b.currentotalvalue-b.totalvalue  ) );
+    const sortedUsers = users.slice().sort((a, b) => (a.currentotalvalue!==0 && b.currentotalvalue !==0 && (a.currentotalvalue  - a.totalvalue) -(b.currentotalvalue-b.totalvalue  ) ));
     return sortedUsers;
   };
 
