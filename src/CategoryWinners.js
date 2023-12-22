@@ -44,6 +44,11 @@ const CategoryWinners = () => {
     return sortedUsers;
   };
 
+  const findLeastWaterFootPrintValueWinner = () => {
+    const sortedUsers = users.slice().sort((a, b) => (a.totalvalue - b.totalvalue) );
+    return sortedUsers;
+  };
+
   const refreshData = () => {
     fetchUsers();
   };
@@ -51,7 +56,7 @@ const CategoryWinners = () => {
   const mostSavedWaterWinner = getTopThreeItems(findMostSavedWaterWinner());
   const mostVisitorsWinner = getTopThreeItems(findMostVisitorsWinner());
   const mostDecreasedValueWinner =  getTopThreeItems(findMostDecreasedValueWinner());
-
+  const leastWaterFootPrint =  getTopThreeItems(findLeastWaterFootPrintValueWinner());
   return (
     <div>
        <h2 className="mb-4">EMEA-ISTANBUL Office</h2>
@@ -67,6 +72,9 @@ const CategoryWinners = () => {
       </Alert>
       <Alert variant="warning" className="mt-3">
         Most Decreased Value Winner: {mostDecreasedValueWinner}  
+      </Alert>
+      <Alert variant="warning" className="mt-3">
+       The best starters(Who starts the challenge with the lowest water foot print): {leastWaterFootPrint}  
       </Alert>
     </div>
   );
