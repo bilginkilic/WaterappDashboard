@@ -104,11 +104,15 @@ const UserList = () => {
   const filteredUsers = sortedUsers.filter(user => user.username && user.username.trim() !== '');
 
   return (
-    <div>
+    <div> <button onClick={handleRefresh}>Refresh</button>
+    <button onClick={handleExcel}>To Excel</button>
+    <button onClick={handleSignOut}>Sign Out</button>
+          <WaterFootprintChart 
+  initialFootprint={totalInitialWaterFootprint} 
+  currentFootprint={totalCurrentWaterFootprint} 
+/>
       <h2>Users List</h2>
-      <button onClick={handleRefresh}>Refresh</button>
-      <button onClick={handleExcel}>To Excel</button>
-      <button onClick={handleSignOut}>Sign Out</button>
+     
       <table id="userTable">
         <thead>
           <tr>
@@ -140,10 +144,7 @@ const UserList = () => {
         </tbody>
       </table>
 
-      <WaterFootprintChart 
-  initialFootprint={totalInitialWaterFootprint} 
-  currentFootprint={totalCurrentWaterFootprint} 
-/>
+  
     </div>
   );
 };
