@@ -31,7 +31,7 @@ const WaterFootprintChart = ({ initialFootprint, currentFootprint }) => {
       }
     },
     animation: {
-      duration: 7000 // Animation duration in milliseconds
+      duration: 14000 // Animation duration in milliseconds
     }
   };
 
