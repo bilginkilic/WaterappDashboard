@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DataStore } from '@aws-amplify/datastore';
 import { Statisticx } from './models';
 import { Auth } from 'aws-amplify';
+import WaterFootprintChart from './WaterFootprintChart';
 
 import ExcelJS from 'exceljs';
 
@@ -10,6 +11,8 @@ const UserList = () => {
   const [users, setUsers] = useState([]);
   const [sortBy, setSortBy] = useState('username');
   const [sortOrder, setSortOrder] = useState('asc');
+  const [totalInitialWaterFootprint, setTotalInitialWaterFootprint] = useState(0);
+  const [totalCurrentWaterFootprint, setTotalCurrentWaterFootprint] = useState(0);
 
   useEffect(() => {
     fetchUsers();
@@ -30,6 +33,10 @@ const UserList = () => {
       const usersData = await DataStore.query(Statisticx);
       console.log(usersData)
       setUsers(usersData);
+      const totalInitial = usersData.reduce((acc, user) => acc + user.totalvalue, 0);
+      const totalCurrent = usersData.reduce((acc, user) => acc + user.currentotalvalue, 0);
+      setTotalInitialWaterFootprint(totalInitial);
+      setTotalCurrentWaterFootprint(totalCurrent);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
@@ -132,6 +139,11 @@ const UserList = () => {
           ))}
         </tbody>
       </table>
+
+      <WaterFootprintChart 
+  initialFootprint={totalInitialWaterFootprint} 
+  currentFootprint={totalCurrentWaterFootprint} 
+/>
     </div>
   );
 };
