@@ -29,7 +29,7 @@ const CategoryWinners = () => {
       return ""; // Return an empty string for non-array inputs
     }
   
-    const topThreeItems = items.map(user=>user.username).slice(0, 3); // Extract the first three items or less
+    const topThreeItems = items.map(user=>user.username).slice(0, 4); // Extract the first three items or less
     return topThreeItems.join(", "); // Join them with commas
   };
   
